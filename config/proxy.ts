@@ -7,8 +7,8 @@
  */
 export default {
   dev: {
-    '/api/': {
-      target: 'https://preview.pro.ant.design',
+    '/v3/': {
+      target: 'https://f.epanel.cn',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },

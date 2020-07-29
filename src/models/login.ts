@@ -38,7 +38,8 @@ const Model: LoginModelType = {
         payload: response,
       });
       // Login successfully
-      if (response.status === 'ok') {
+      if (response.status === 400 || response.status === 200) {
+        localStorage.setItem('token',response.data.token);
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params as { redirect: string };
@@ -60,6 +61,7 @@ const Model: LoginModelType = {
 
     logout() {
       const { redirect } = getPageQuery();
+      localStorage.removeItem('token');
       // Note: There may be security issues, please note
       if (window.location.pathname !== '/user/login' && !redirect) {
         history.replace({
